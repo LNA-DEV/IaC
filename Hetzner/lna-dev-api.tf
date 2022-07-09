@@ -4,6 +4,14 @@ resource "hcloud_server" "api_lna-dev_com" {
   image        = "ubuntu-20.04"
   location     = "nbg1"
   firewall_ids = [hcloud_firewall.API-Firewall.id]
+  # Doesnt work but i dont now why -> no error
+  user_data = file("./Scripts/API-INIT.sh")
+
+  # Creates the file on the machin running the script!!!
+  provisioner "local-exec" {
+    command = "touch ~/blub.txt"
+  }
+
 }
 
 resource "hcloud_firewall" "API-Firewall" {
@@ -48,3 +56,5 @@ resource "hcloud_firewall" "API-Firewall" {
   }
 
 }
+
+
