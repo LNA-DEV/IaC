@@ -1,35 +1,42 @@
 #! /bin/bash
+sudo su
 sudo apt-get update
 sudo apt-get upgrade -y
 
+# Turn off swapspace
 swapoff -a; sed -i '/swap/d' /etc/fstab
 
+sysctl settings for Kubernetes networking
+cat >>/etc/sysctl.d/kubernetes.conf<<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
+
 # Install Docker
-sudo apt-get update
-sudo apt-get install \
-   ca-certificates \
-   curl \
-   gnupg \
-   lsb-release
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt update
+apt install -y docker-ce=5:19.03.10~3-0~ubuntu-focal containerd.io
 
 # Install Kubernetes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
-apt update && apt install -y kubeadm kubelet kubectl -y #Removed version
+apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-00 -y
 
 # Cluster init
 publicIp=$(curl ipinfo.io/ip)
 kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.1.0/24  --ignore-preflight-errors=all
 
 # Join Nodes
-kubeadm token create --print-join-command > join.txt
+kubeadm token create --print-join-command > ~/join.txt
 sudo apt-get install netcat
-sleep 60
-netcat [ip-address] 5789 <join.txt
+sleep 30
+sudo netcat 10.0.1.2 57898 < ~/join.txt
+
+# Configur kubectl
+mkdir ~/.kube/
+touch ~/.kube/config
+cd ~
+cp /etc/kubernetes/admin.conf .kube/config

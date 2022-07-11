@@ -3,10 +3,11 @@ resource "hcloud_server" "kubeMaster" {
   server_type  = "cpx11"
   image        = "ubuntu-20.04"
   location     = "nbg1"
-  user_data = replace(file("/Scripts/KubeInitMaster.sh"), "[ip-address]", kubeMaster.network.ip)
+  user_data = file("/Scripts/KubeInitMaster.sh")
 
   network {
     network_id = hcloud_network.kubeNetwork.id
+    ip = "10.0.1.1"
   }
 }
 
@@ -20,6 +21,7 @@ resource "hcloud_server" "kubeNode" {
 
   network {
     network_id = hcloud_network.kubeNetwork.id
+    ip = "10.0.1.2"
   }
 }
 
