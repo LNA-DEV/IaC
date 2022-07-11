@@ -5,6 +5,7 @@ provider "registry.terraform.io/hetznercloud/hcloud" {
   version     = "1.34.3"
   constraints = "1.34.3"
   hashes = [
+    "h1:6q3w0NJ+l2QNxLX47SebSUErucn1nXWOr5zbBlBdl9I=",
     "h1:ZAFEiotL15xHI957CrTJEm3z83/lFMQdNWiMqN7Dyu4=",
     "zh:08e4aea3c4e895d941c24d76f373977e5fae112c531b56cb2fcdaa8b5086ebec",
     "zh:09f1255aad8f790c86a14522c7fff2fcb6529bb18f1e49a7423ca79db07f5a47",

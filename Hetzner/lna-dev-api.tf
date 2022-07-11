@@ -1,60 +1,35 @@
-resource "hcloud_server" "api_lna-dev_com" {
-  name         = "api.lna-dev.com.TF"
+resource "hcloud_server" "kubeMaster" {
+  name         = "kubeMaster"
   server_type  = "cpx11"
   image        = "ubuntu-20.04"
   location     = "nbg1"
-  firewall_ids = [hcloud_firewall.API-Firewall.id]
-  # Doesnt work but i dont now why -> no error
-  user_data = file("./Scripts/API-INIT.sh")
+  user_data = file("/Scripts/KubeInitMaster.sh")
 
-  # Creates the file on the machin running the script!!!
-  provisioner "local-exec" {
-    command = "touch ~/blub.txt"
+  network {
+    network_id = hcloud_network.kubeNetwork.id
   }
-
 }
 
-resource "hcloud_firewall" "API-Firewall" {
-  name = "API-Firewall"
-  rule {
-    direction = "in"
-    protocol  = "icmp"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
-  }
+resource "hcloud_server" "kubeNode" {
+  name         = "kubeNode"
+  server_type  = "cpx11"
+  image        = "ubuntu-20.04"
+  location     = "nbg1"
+  user_data = file("./Scripts/KubeInitNode.sh")
 
-  rule {
-    direction = "in"
-    protocol  = "tcp"
-    port      = "80"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
+  network {
+    network_id = hcloud_network.kubeNetwork.id
   }
-
-  rule {
-    direction = "in"
-    protocol  = "tcp"
-    port      = "443"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
-  }
-
-  rule {
-    direction = "in"
-    protocol  = "tcp"
-    port      = "22"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
-  }
-
 }
 
+resource "hcloud_network" "kubeNetwork" {
+  name     = "kubeNetwork"
+  ip_range = "10.0.0.0/8"
+}
 
+resource "hcloud_network_subnet" "kubeNetworkSubnet" {
+  type         = "cloud"
+  network_id   = hcloud_network.kubeNetwork.id
+  network_zone = "eu-central"
+  ip_range     = "10.0.1.0/24"
+}
