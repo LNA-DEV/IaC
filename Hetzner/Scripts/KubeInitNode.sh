@@ -2,6 +2,8 @@
 sudo apt-get update
 sudo apt-get upgrade -y
 
+swapoff -a; sed -i '/swap/d' /etc/fstab
+
 # Install Docker
 sudo apt-get update
 sudo apt-get install \
@@ -20,6 +22,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 # Install Kubernetes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
-apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-00 -y
+apt update && apt install -y kubeadm kubelet kubectl -y #Removed version
 
 #TODO

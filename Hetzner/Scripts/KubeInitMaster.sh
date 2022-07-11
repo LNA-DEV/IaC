@@ -2,6 +2,8 @@
 sudo apt-get update
 sudo apt-get upgrade -y
 
+swapoff -a; sed -i '/swap/d' /etc/fstab
+
 # Install Docker
 sudo apt-get update
 sudo apt-get install \
@@ -20,11 +22,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 # Install Kubernetes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
-apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-00 -y
-
-publicIp=$(curl ipinfo.io/ip)
+apt update && apt install -y kubeadm kubelet kubectl -y #Removed version
 
 # Cluster init
+publicIp=$(curl ipinfo.io/ip)
 kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.1.0/24  --ignore-preflight-errors=all
 
-#TODO
+# Join Nodes
+kubeadm token create --print-join-command > join.txt
+sudo apt-get install netcat
+sleep 60
+netcat [ip-address] 5789 <join.txt
