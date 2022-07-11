@@ -14,7 +14,7 @@ resource "hcloud_server" "kubeMaster" {
 variable "kubeNodeCount" {
   type = number
   description = "Count of Kubernetes Nodes"
-  default = 4
+  default = 1
 }
 
 resource "hcloud_server" "kubeNode" {
