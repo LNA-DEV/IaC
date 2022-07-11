@@ -11,7 +11,8 @@ resource "hcloud_server" "kubeMaster" {
 }
 
 resource "hcloud_server" "kubeNode" {
-  name         = "kubeNode"
+  count = 1
+  name         = "kubeNode${count.index}"
   server_type  = "cpx11"
   image        = "ubuntu-20.04"
   location     = "nbg1"
