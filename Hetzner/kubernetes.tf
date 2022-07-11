@@ -21,7 +21,7 @@ resource "hcloud_server" "kubeNode" {
 
   network {
     network_id = hcloud_network.kubeNetwork.id
-    ip = "10.0.1.2"
+    ip = replace("10.0.1.X", "X", sum(["${count.index}", 2]))
   }
 }
 
