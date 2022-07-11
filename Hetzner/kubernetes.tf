@@ -3,7 +3,7 @@ resource "hcloud_server" "kubeMaster" {
   server_type  = "cpx11"
   image        = "ubuntu-20.04"
   location     = "nbg1"
-  user_data = file("/Scripts/KubeInitMaster.sh")
+  user_data = replace(file("/Scripts/KubeInitMaster.sh"), "[REPLACE]", sum(["${var.kubeNodeCount}", 1]))
 
   network {
     network_id = hcloud_network.kubeNetwork.id
@@ -11,8 +11,14 @@ resource "hcloud_server" "kubeMaster" {
   }
 }
 
+variable "kubeNodeCount" {
+  type = number
+  description = "Count of Kubernetes Nodes"
+  default = 4
+}
+
 resource "hcloud_server" "kubeNode" {
-  count = 1
+  count = var.kubeNodeCount
   name         = "kubeNode${count.index}"
   server_type  = "cpx11"
   image        = "ubuntu-20.04"

@@ -32,8 +32,12 @@ kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.1.0
 # Join Nodes
 kubeadm token create --print-join-command > ~/join.txt
 sudo apt-get install netcat
-sleep 30
-sudo netcat 10.0.1.2 57898 < ~/join.txt
+sleep 60
+
+for i in {2..[REPLACE]}
+do
+  sudo netcat 10.0.1.$i 57898 < ~/join.txt
+done
 
 # Configur kubectl
 mkdir ~/.kube/
