@@ -23,3 +23,19 @@ provider "registry.terraform.io/hetznercloud/hcloud" {
     "zh:a68e5e2e2f03656e427045e32ca999422e00be299fc6ecedbd41bef48871b7c5",
   ]
 }
+
+provider "registry.terraform.io/timohirt/hetznerdns" {
+  version     = "2.1.0"
+  constraints = "2.1.0"
+  hashes = [
+    "h1:8uu6bFOySRNpFoeOXaAZZyUcgOt8VkmoJmVB9109QI0=",
+    "zh:1b1e1245a3c57995cddd0e094411715d9a71043ead2d4f427b5bd364616b5822",
+    "zh:4b3f4583cad7a106e8dad0252946df34ae908fd7237b1744b500a0428f3e6b02",
+    "zh:508bdd2860a2ae3168093904bdb3a654ed6ba1a9036207a4c154cf22fd2ab4a5",
+    "zh:8f9bf0ff1d4f28e996e28c7c3de42a2c7487afdbba89033e22f51759dfe3f429",
+    "zh:a2708d50f5714e09b252010e6f1c684d92d0935df609be839c02b9eb4ce661d2",
+    "zh:ab338f412a020f57931b4852c0ab236a592756d7c3f4a4adb3fe7b96bd847d27",
+    "zh:c5491e35d3ddd777eab87b6c1b0ac7890e77eb611b8b1dcf6132af665f3a57d8",
+    "zh:daffa4c068ceb6d6b4af87cdb3c590ddd2047c3f9e6bc8048a414ea7d99942b0",
+  ]
+}

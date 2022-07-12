@@ -42,3 +42,23 @@ resource "hcloud_network_subnet" "kubeNetworkSubnet" {
   network_zone = "eu-central"
   ip_range     = "10.0.1.0/24"
 }
+
+data "hetznerdns_zone" "dns_zone" {
+    name = "lna-dev.net"
+}
+
+resource "hetznerdns_record" "empty" {
+    zone_id = data.hetznerdns_zone.dns_zone.id
+    name = "@"
+    value = hcloud_server.kubeMaster.ipv4_address
+    type = "A"
+    ttl= 120
+}
+
+resource "hetznerdns_record" "kubectl" {
+    zone_id = data.hetznerdns_zone.dns_zone.id
+    name = "kubectl"
+    value = hcloud_server.kubeMaster.ipv4_address
+    type = "A"
+    ttl= 120
+}
