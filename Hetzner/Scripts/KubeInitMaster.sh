@@ -44,3 +44,21 @@ mkdir ~/.kube/
 touch ~/.kube/config
 cd ~
 cp /etc/kubernetes/admin.conf .kube/config
+
+sleep 60
+
+kubectl label node kubeNode node-role.kubernetes.io/worker=worker
+
+var=[REPLACE]
+var=$var-2
+
+for (( i = 0; i <= $var; i++ )) 
+do
+  kubectl label node kubenode$i node-role.kubernetes.io/worker=worker
+done
+
+# Calico Network
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+
+# Finisheds script
+touch ~/FinishedScript.txt
