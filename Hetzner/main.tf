@@ -4,8 +4,8 @@ terraform {
       source  = "hetznercloud/hcloud"
       version = "1.34.3"
     }
-     hetznerdns = {
-      source = "timohirt/hetznerdns"
+    hetznerdns = {
+      source  = "timohirt/hetznerdns"
       version = "2.1.0"
     }
   }

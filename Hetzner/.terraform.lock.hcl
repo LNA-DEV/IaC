@@ -29,6 +29,7 @@ provider "registry.terraform.io/timohirt/hetznerdns" {
   constraints = "2.1.0"
   hashes = [
     "h1:8uu6bFOySRNpFoeOXaAZZyUcgOt8VkmoJmVB9109QI0=",
+    "h1:fNDrNbEUkv/TnUdg5rqHhDyI9hp3ScJ0tW/psaKfHY4=",
     "zh:1b1e1245a3c57995cddd0e094411715d9a71043ead2d4f427b5bd364616b5822",
     "zh:4b3f4583cad7a106e8dad0252946df34ae908fd7237b1744b500a0428f3e6b02",
     "zh:508bdd2860a2ae3168093904bdb3a654ed6ba1a9036207a4c154cf22fd2ab4a5",
