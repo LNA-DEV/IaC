@@ -59,7 +59,6 @@ done
 
 # Calico Network
 kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
-kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml # Test
 
 # Finisheds script
 touch ~/FinishedScript.txt
