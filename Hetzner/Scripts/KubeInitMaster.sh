@@ -27,7 +27,7 @@ apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-
 
 # Cluster init
 publicIp=$(curl ipinfo.io/ip)
-kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.1.0/24  --ignore-preflight-errors=all
+kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.244.0.0/16 --ignore-preflight-errors=all
 
 # Join Nodes
 kubeadm token create --print-join-command > ~/join.txt
@@ -57,8 +57,9 @@ do
   kubectl label node kubenode$i node-role.kubernetes.io/worker=worker
 done
 
-# Calico Network
-kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+# Network
+kubectl create -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
+kubectl create -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 # Finisheds script
 touch ~/FinishedScript.txt
