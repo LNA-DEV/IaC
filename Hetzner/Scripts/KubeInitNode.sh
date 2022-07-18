@@ -28,3 +28,5 @@ apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-
 sudo apt-get install netcat
 sudo netcat -l -p 57898 -q 30 > ~/finished.txt
 bash ~/finished.txt
+
+#TODO Edit file for network conifg
