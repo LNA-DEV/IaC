@@ -27,7 +27,7 @@ apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-
 
 # Cluster init
 publicIp=$(curl ipinfo.io/ip)
-kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.1.0/24  --ignore-preflight-errors=all
+kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=192.168.0.0/16  --ignore-preflight-errors=all
 
 # Join Nodes
 kubeadm token create --print-join-command > ~/join.txt
@@ -58,7 +58,7 @@ do
 done
 
 # Calico Network
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/62e44c867a2846fefb68bd5f178daf4da3095ccb/Documentation/kube-flannel.yml
 
 # Finisheds script
 touch ~/FinishedScript.txt
