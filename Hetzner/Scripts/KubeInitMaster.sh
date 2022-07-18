@@ -32,14 +32,14 @@ kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.1.0
 # Join Nodes
 kubeadm token create --print-join-command > ~/join.txt
 sudo apt-get install netcat
-sleep 60
+sleep 120
 
 for i in {2..[REPLACE]}
 do
   sudo netcat 10.0.1.$i 57898 < ~/join.txt
 done
 
-# Configur kubectl
+# Configure kubectl
 mkdir ~/.kube/
 touch ~/.kube/config
 cd ~
@@ -58,7 +58,7 @@ do
 done
 
 # Calico Network
-kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 # Finisheds script
 touch ~/FinishedScript.txt
