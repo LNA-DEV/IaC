@@ -29,10 +29,13 @@ apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-
 publicIp=$(curl ipinfo.io/ip)
 kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=192.168.0.0/16  --ignore-preflight-errors=all
 
+# Calico Network
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+
 # Join Nodes
 kubeadm token create --print-join-command > ~/join.txt
 sudo apt-get install netcat
-sleep 120
+sleep 60
 
 for i in {2..[REPLACE]}
 do
@@ -56,9 +59,6 @@ for (( i = 0; i <= $var; i++ ))
 do
   kubectl label node kubenode$i node-role.kubernetes.io/worker=worker
 done
-
-# Calico Network
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/62e44c867a2846fefb68bd5f178daf4da3095ccb/Documentation/kube-flannel.yml
 
 # Finisheds script
 touch ~/FinishedScript.txt
