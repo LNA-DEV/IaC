@@ -27,7 +27,7 @@ apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-
 
 # Cluster init
 publicIp=$(curl ipinfo.io/ip)
-kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=192.168.0.0/16  --ignore-preflight-errors=all
+kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.0.0/16  --ignore-preflight-errors=all
 
 # Calico Network
 kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
