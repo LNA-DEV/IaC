@@ -27,7 +27,10 @@ apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-
 
 # Cluster init
 publicIp=$(curl ipinfo.io/ip)
-kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.1.0/24  --ignore-preflight-errors=all
+kubeadm init --apiserver-advertise-address=$publicIp --pod-network-cidr=10.0.0.0/16  --ignore-preflight-errors=all
+
+# Calico Network
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
 
 # Join Nodes
 kubeadm token create --print-join-command > ~/join.txt
@@ -39,7 +42,7 @@ do
   sudo netcat 10.0.1.$i 57898 < ~/join.txt
 done
 
-# Configur kubectl
+# Configure kubectl
 mkdir ~/.kube/
 touch ~/.kube/config
 cd ~
@@ -56,9 +59,6 @@ for (( i = 0; i <= $var; i++ ))
 do
   kubectl label node kubenode$i node-role.kubernetes.io/worker=worker
 done
-
-# Calico Network
-kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
 
 # Finisheds script
 touch ~/FinishedScript.txt
