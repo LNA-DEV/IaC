@@ -57,7 +57,7 @@ resource "hetznerdns_record" "me" {
   ttl     = 120
 }
 
-# IaC.lna-dev.net
+# iac.lna-dev.net
 resource "hetznerdns_record" "IaC" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "iac"
