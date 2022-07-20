@@ -34,7 +34,7 @@ resource "hetznerdns_record" "kubectl" {
 resource "hetznerdns_record" "mail1" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "@"
-  value   = "mx00.ionos.de."
+  value   = "10 mx00.ionos.de."
   type    = "MX"
   ttl     = 120
 }
@@ -42,7 +42,7 @@ resource "hetznerdns_record" "mail1" {
 resource "hetznerdns_record" "mail2" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "@"
-  value   = "mx01.ionos.de."
+  value   = "20 mx01.ionos.de."
   type    = "MX"
   ttl     = 120
 }
