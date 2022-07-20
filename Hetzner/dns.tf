@@ -56,3 +56,12 @@ resource "hetznerdns_record" "me" {
   type    = "CNAME"
   ttl     = 120
 }
+
+# iac.lna-dev.net
+resource "hetznerdns_record" "IaC" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "iac"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 120
+}
