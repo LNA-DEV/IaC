@@ -31,19 +31,28 @@ resource "hetznerdns_record" "kubectl" {
 
 
 # Mail
-# Deactivated because the infrastructure descibed in the terraform scripts does not run permanently yet and the entrys are already needed
-# resource "hetznerdns_record" "mail1" {
-#   zone_id = data.hetznerdns_zone.dns_zone.id
-#   name    = "@"
-#   value   = "mx00.ionos.de."
-#   type    = "MX"
-#   ttl     = 120
-# }
+resource "hetznerdns_record" "mail1" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
+  value   = "mx00.ionos.de."
+  type    = "MX"
+  ttl     = 120
+}
 
-# resource "hetznerdns_record" "mail2" {
-#   zone_id = data.hetznerdns_zone.dns_zone.id
-#   name    = "@"
-#   value   = "mx01.ionos.de."
-#   type    = "MX"
-#   ttl     = 120
-# }
+resource "hetznerdns_record" "mail2" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
+  value   = "mx01.ionos.de."
+  type    = "MX"
+  ttl     = 120
+}
+
+
+# me.lna-dev.net
+resource "hetznerdns_record" "me" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "me"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 120
+}
