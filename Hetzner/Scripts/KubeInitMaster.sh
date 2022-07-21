@@ -60,5 +60,9 @@ do
   kubectl label node kubenode$i node-role.kubernetes.io/worker=worker
 done
 
+# Remove taint
+# TODO taint
+#kubectl taint nodes --all node-role.kubernetes.io/master-
+
 # Finisheds script
 touch ~/FinishedScript.txt
