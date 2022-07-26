@@ -35,5 +35,5 @@ variable "hcloud_dns_token" {
 module "kubernetes" {
   source  = "LNA-DEV/kubernetes/hetzner"
   version = "1.1.8"
-  hcloud_token = vars.hcloud_token
+  hcloud_token = var.hcloud_token
 }
