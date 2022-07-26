@@ -20,13 +20,13 @@ provider "hetznerdns" {
 }
 
 variable "hcloud_token" {
-  sensitive   = true # Requires terraform >= 0.14
+  sensitive   = true
   type        = string
   description = "Hetzner API-Token"
 }
 
 variable "hcloud_dns_token" {
-  sensitive   = true # Requires terraform >= 0.14
+  sensitive   = true
   type        = string
   description = "Hetzner DNS-API-Token"
 }
