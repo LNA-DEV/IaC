@@ -30,3 +30,10 @@ variable "hcloud_dns_token" {
   type        = string
   description = "Hetzner DNS-API-Token"
 }
+
+# Kubernetes
+module "kubernetes" {
+  source  = "LNA-DEV/kubernetes/hetzner"
+  version = "1.1.8"
+  hcloud_token = vars.hcloud_token
+}
