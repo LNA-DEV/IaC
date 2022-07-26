@@ -19,22 +19,10 @@ provider "hetznerdns" {
   apitoken = var.hcloud_dns_token
 }
 
-variable "hcloud_token" {
-  sensitive   = true
-  type        = string
-  description = "Hetzner API-Token"
-}
-
-variable "hcloud_dns_token" {
-  sensitive   = true
-  type        = string
-  description = "Hetzner DNS-API-Token"
-}
-
 # Kubernetes
 module "kubernetes" {
   source        = "LNA-DEV/kubernetes/hetzner"
-  version       = "1.1.11"
+  version       = "1.1.13"
   hcloud_token  = var.hcloud_token
   kubeNodeCount = 1
 }
