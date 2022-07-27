@@ -22,7 +22,7 @@ provider "hetznerdns" {
 # Kubernetes
 module "kubernetes" {
   source                      = "LNA-DEV/kubernetes/hetzner"
-  version                     = "1.1.21"
+  version                     = "1.1.22"
   hcloud_token                = var.hcloud_token
   kubeNodeCount               = 1
   certifacteDomains           = ["api.lna-dev.net"]
