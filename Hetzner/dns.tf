@@ -50,3 +50,12 @@ resource "hetznerdns_record" "thk" {
   type    = "CNAME"
   ttl     = 120
 }
+
+# api.lna-dev.net
+resource "hetznerdns_record" "api" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "api"
+  value   = module.kubernetes.loadBalancerIp
+  type    = "A"
+  ttl     = 120
+}
