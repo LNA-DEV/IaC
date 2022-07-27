@@ -21,8 +21,10 @@ provider "hetznerdns" {
 
 # Kubernetes
 module "kubernetes" {
-  source        = "LNA-DEV/kubernetes/hetzner"
-  version       = "1.1.13"
-  hcloud_token  = var.hcloud_token
-  kubeNodeCount = 1
+  source                      = "LNA-DEV/kubernetes/hetzner"
+  version                     = "1.1.19"
+  hcloud_token                = var.hcloud_token
+  kubeNodeCount               = 1
+  certifacteDomains           = ["api.lna-dev.net"]
+  loadBalancerDestinationPort = "30001"
 }
