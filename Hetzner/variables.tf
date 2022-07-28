@@ -9,3 +9,9 @@ variable "hcloud_dns_token" {
   type        = string
   description = "Hetzner DNS-API-Token"
 }
+
+variable "kubeSecrets" {
+  sensitive   = true
+  type        = string
+  description = "Kubernetes Secrets"
+}
