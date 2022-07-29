@@ -14,6 +14,7 @@
 |🔗 Subdomain|📃 Content|
 |---|---|
 |[lna-dev.com](https://lna-dev.com)|Currently the domain for my personal website|
+|[fiae.lna-dev.com](https://fiae.lna-dev.com)||
 
 ## lna-dev.de
 
