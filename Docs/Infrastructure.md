@@ -1,5 +1,7 @@
 # Infrastructure ~ Docs
 
-The documentation will be added soon🙃😉
+- [Domains](./Domains.md)
+
+Further documentation will be added soon🙃😉
 
 <!-- TODO -->
