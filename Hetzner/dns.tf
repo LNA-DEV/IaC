@@ -59,3 +59,12 @@ resource "hetznerdns_record" "api" {
   type    = "A"
   ttl     = 120
 }
+
+# ce.lna-dev.net
+resource "hetznerdns_record" "ce" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "ce"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 120
+}
