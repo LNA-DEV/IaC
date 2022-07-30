@@ -11,4 +11,4 @@ I am using terraform to create a kubernetes cluster in the Hetzner-Cloud on bare
 
 ## To the Docs 📄
 
-[Click](../Docs/Infrastructure.md)
+[Click](./Docs/Infrastructure.md)
