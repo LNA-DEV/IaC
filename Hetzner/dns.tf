@@ -60,10 +60,21 @@ resource "hetznerdns_record" "api" {
   ttl     = 120
 }
 
+# Common Extensions
 # ce.lna-dev.net
 resource "hetznerdns_record" "ce" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "ce"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 120
+}
+
+# Privacy Tools
+# privacy.lna-dev.net
+resource "hetznerdns_record" "privacy" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "privacy"
   value   = "lna-dev.github.io."
   type    = "CNAME"
   ttl     = 120
