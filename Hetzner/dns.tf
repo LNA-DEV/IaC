@@ -79,3 +79,13 @@ resource "hetznerdns_record" "privacy" {
   type    = "CNAME"
   ttl     = 120
 }
+
+# LNA-Photo
+# photo.lna-dev.net
+resource "hetznerdns_record" "photo" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "photo"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 120
+}
