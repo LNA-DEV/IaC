@@ -11,6 +11,7 @@
 |[ce.lna-dev.net](https://ce.lna-dev.net)|The domain for the documentation of my CommonExtensions nuget|
 |[privacy.lna-dev.net](https://privacy.lna-dev.net)|This repository gets build to a website which lists a view tools which protect your privacy|
 |[photo.lna-dev.net](https://photo.lna-dev.net)|Webpage of my flutter app LNA-Photo|
+|[blog.lna-dev.net](https://blog.lna-dev.net)|The page of my WebBlog. I blog about Software-Engineering and some other topics.|
 
 ## lna-dev.com
 
