@@ -99,3 +99,13 @@ resource "hetznerdns_record" "blog" {
   type    = "CNAME"
   ttl     = 120
 }
+
+# Fachinformatiker Prüfungsvorbereitung
+# fi.lna-dev.net
+resource "hetznerdns_record" "fi" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "fi"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 120
+}

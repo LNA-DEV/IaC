@@ -12,16 +12,17 @@
 |[privacy.lna-dev.net](https://privacy.lna-dev.net)|This repository gets build to a website which lists a view tools which protect your privacy|
 |[photo.lna-dev.net](https://photo.lna-dev.net)|Webpage of my flutter app LNA-Photo|
 |[blog.lna-dev.net](https://blog.lna-dev.net)|The page of my WebBlog. I blog about Software-Engineering and some other topics.|
+|[fi.lna-dev.net](https://fi.lna-dev.net)|The domain for my page of the notes i took to learn for the german certificate "Fachinformatiker" 🏆|
 
 ## lna-dev.com
 
 |🔗 Subdomain|📃 Content|
 |---|---|
 |[lna-dev.com](https://lna-dev.com)|Currently the domain for my personal website|
-|[fiae.lna-dev.com](https://fiae.lna-dev.com)|The domain for my page of the notes i took to learn for the german certificate "Fachinformatiker Anwendungsentwicklung" 🏆|
+|[fiae.lna-dev.com](https://fiae.lna-dev.com)|🔗 fi.lna-dev.net|
 
 ## lna-dev.de
 
 |🔗 Subdomain|📃 Content|
 |---|---|
-|[lna-dev.de](https://lna-dev.de)|🔗 lna-dev.de|
+|[lna-dev.de](https://lna-dev.de)|🔗 lna-dev.com|
