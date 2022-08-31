@@ -109,3 +109,12 @@ resource "hetznerdns_record" "fi" {
   type    = "CNAME"
   ttl     = 120
 }
+
+# Google Search Verfication
+resource "hetznerdns_record" "googleSearchVerify" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
+  value   = "google-site-verification=sNfojWYtYmoN35amaR62HH34NAfLyL_CvI8CHKdUjUw"
+  type    = "txt"
+  ttl     = 120
+}
