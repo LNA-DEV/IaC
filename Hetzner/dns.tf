@@ -122,7 +122,7 @@ resource "hetznerdns_record" "googleSearchVerify" {
 # lna-dev.net
 resource "hetznerdns_record" "personalWebsite" {
   zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "@"
+  name    = "www"
   value   = "lna-dev.github.io."
   type    = "CNAME"
   ttl     = 120
