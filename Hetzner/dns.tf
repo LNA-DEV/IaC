@@ -118,3 +118,12 @@ resource "hetznerdns_record" "googleSearchVerify" {
   type    = "TXT"
   ttl     = 120
 }
+
+# lna-dev.net
+resource "hetznerdns_record" "personalWebsite" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 120
+}
