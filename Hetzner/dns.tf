@@ -3,10 +3,6 @@ data "hetznerdns_zone" "dns_zone" {
   name = "lna-dev.net"
 }
 
-data "hetnzerdns_zone" "prüfungsvorbereitung"{
-  name = "fachinformatiker-prüfungsvorbereitung.de"
-}
-
 
 # Mail
 resource "hetznerdns_record" "mail1" {
@@ -139,6 +135,13 @@ resource "hetznerdns_record" "personalWebsite" {
   value   = "185.199.109.153"
   type    = "A"
   ttl     = 86400
+}
+
+
+
+
+data "hetznerdns_zone" "prüfungsvorbereitung"{
+  name = "fachinformatiker-prüfungsvorbereitung.de"
 }
 
 # fachinformatiker-prüfungsvorbereitung.de
