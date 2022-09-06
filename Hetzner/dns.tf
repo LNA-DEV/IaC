@@ -3,6 +3,10 @@ data "hetznerdns_zone" "dns_zone" {
   name = "lna-dev.net"
 }
 
+data "hetnzerdns_zone" "prüfungsvorbereitung"{
+  name = "fachinformatiker-prüfungsvorbereitung.de"
+}
+
 
 # Mail
 resource "hetznerdns_record" "mail1" {
@@ -126,4 +130,40 @@ resource "hetznerdns_record" "personalWebsite" {
   value   = "lna-dev.github.io."
   type    = "CNAME"
   ttl     = 120
+}
+
+# lna-dev.net
+resource "hetznerdns_record" "personalWebsite" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
+  value   = "185.199.109.153"
+  type    = "A"
+  ttl     = 86400
+}
+
+# lna-dev.net
+resource "hetznerdns_record" "personalWebsite" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "www"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 120
+}
+
+# fachinformatiker-prüfungsvorbereitung.de
+resource "hetznerdns_record" "personalWebsite" {
+  zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
+  name    = "@"
+  value   = "185.199.109.153"
+  type    = "A"
+  ttl     = 86400
+}
+
+# fachinformatiker-prüfungsvorbereitung.de
+resource "hetznerdns_record" "personalWebsite" {
+  zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
+  name    = "www"
+  value   = "lna-dev.github.io."
+  type    = "CNAME"
+  ttl     = 86400
 }
