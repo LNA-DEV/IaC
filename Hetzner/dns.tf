@@ -105,8 +105,8 @@ resource "hetznerdns_record" "blog" {
 resource "hetznerdns_record" "fi" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "fi"
-  value   = "lna-dev.github.io."
-  type    = "CNAME"
+  value   = "185.199.109.153"
+  type    = "A"
   ttl     = 120
 }
 
