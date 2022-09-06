@@ -5,6 +5,7 @@ provider "registry.terraform.io/hashicorp/http" {
   version = "2.2.0"
   hashes = [
     "h1:syLdPUKrNIJ7mF7+ijSSUot8VIuFL/45kbN5UcHEIvU=",
+    "h1:xR3IXiWEeTrfluYNDoIFj93etzMGI9cZVCDDoTHMLJA=",
     "zh:159add5739a597c08439318f67c440a90ce8444a009e7b8aabbcb9279da9191f",
     "zh:1e5fbe9a4b8d3d9f167effc03bd5324ad6ef721c23a174e98c7eb2e8b85e34e8",
     "zh:4b150790ac5948ceec4f97df4deaff835e4798049d858c20413cbdff6e610c4d",
@@ -25,6 +26,7 @@ provider "registry.terraform.io/hetznercloud/hcloud" {
   constraints = "1.34.3"
   hashes = [
     "h1:6q3w0NJ+l2QNxLX47SebSUErucn1nXWOr5zbBlBdl9I=",
+    "h1:GQlg/6HN9k5chIDLkEqSlv9IrGrhADOu10iV/nzAhWM=",
     "h1:ZAFEiotL15xHI957CrTJEm3z83/lFMQdNWiMqN7Dyu4=",
     "zh:08e4aea3c4e895d941c24d76f373977e5fae112c531b56cb2fcdaa8b5086ebec",
     "zh:09f1255aad8f790c86a14522c7fff2fcb6529bb18f1e49a7423ca79db07f5a47",
@@ -49,6 +51,7 @@ provider "registry.terraform.io/timohirt/hetznerdns" {
   hashes = [
     "h1:8uu6bFOySRNpFoeOXaAZZyUcgOt8VkmoJmVB9109QI0=",
     "h1:fNDrNbEUkv/TnUdg5rqHhDyI9hp3ScJ0tW/psaKfHY4=",
+    "h1:mGnKBtB1Oc+rOLDF8zGpjwKnBGRqBspJ6/Jvuyoi6KE=",
     "zh:1b1e1245a3c57995cddd0e094411715d9a71043ead2d4f427b5bd364616b5822",
     "zh:4b3f4583cad7a106e8dad0252946df34ae908fd7237b1744b500a0428f3e6b02",
     "zh:508bdd2860a2ae3168093904bdb3a654ed6ba1a9036207a4c154cf22fd2ab4a5",
