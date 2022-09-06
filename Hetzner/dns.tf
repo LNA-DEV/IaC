@@ -119,6 +119,7 @@ resource "hetznerdns_record" "googleSearchVerify" {
   ttl     = 120
 }
 
+
 # lna-dev.net
 resource "hetznerdns_record" "personalWebsiteWWW" {
   zone_id = data.hetznerdns_zone.dns_zone.id
@@ -184,4 +185,12 @@ resource "hetznerdns_record" "prüfungsvorbereitungWWW" {
   value   = "lna-dev.github.io."
   type    = "CNAME"
   ttl     = 86400
+}
+
+resource "hetznerdns_record" "googleSearchVerifyFiPv" {
+  zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
+  name    = "@"
+  value   = "google-site-verification=1OrQrIpwfPStQ2e_QwO3KBlHvmi2fVXwlyE7Lwm--XA"
+  type    = "TXT"
+  ttl     = 120
 }
