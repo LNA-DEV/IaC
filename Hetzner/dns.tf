@@ -124,7 +124,7 @@ resource "hetznerdns_record" "googleSearchVerify" {
 }
 
 # lna-dev.net
-resource "hetznerdns_record" "personalWebsite" {
+resource "hetznerdns_record" "personalWebsiteWWW" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "www"
   value   = "lna-dev.github.io."
@@ -139,15 +139,6 @@ resource "hetznerdns_record" "personalWebsite" {
   value   = "185.199.109.153"
   type    = "A"
   ttl     = 86400
-}
-
-# lna-dev.net
-resource "hetznerdns_record" "personalWebsiteWWW" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "www"
-  value   = "lna-dev.github.io."
-  type    = "CNAME"
-  ttl     = 120
 }
 
 # fachinformatiker-prüfungsvorbereitung.de
