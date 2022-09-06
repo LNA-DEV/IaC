@@ -142,7 +142,7 @@ resource "hetznerdns_record" "personalWebsite" {
 }
 
 # lna-dev.net
-resource "hetznerdns_record" "personalWebsite" {
+resource "hetznerdns_record" "personalWebsiteWWW" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "www"
   value   = "lna-dev.github.io."
@@ -151,7 +151,7 @@ resource "hetznerdns_record" "personalWebsite" {
 }
 
 # fachinformatiker-prüfungsvorbereitung.de
-resource "hetznerdns_record" "personalWebsite" {
+resource "hetznerdns_record" "prüfungsvorbereitung" {
   zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
   name    = "@"
   value   = "185.199.109.153"
@@ -160,7 +160,7 @@ resource "hetznerdns_record" "personalWebsite" {
 }
 
 # fachinformatiker-prüfungsvorbereitung.de
-resource "hetznerdns_record" "personalWebsite" {
+resource "hetznerdns_record" "prüfungsvorbereitungWWW" {
   zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
   name    = "www"
   value   = "lna-dev.github.io."
