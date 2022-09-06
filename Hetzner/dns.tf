@@ -141,7 +141,7 @@ resource "hetznerdns_record" "personalWebsite" {
 
 
 data "hetznerdns_zone" "prüfungsvorbereitung"{
-  name = "fachinformatiker-prüfungsvorbereitung.de"
+  name = "xn--fachinformatiker-prfungsvorbereitung-w0d.de"
 }
 
 # fachinformatiker-prüfungsvorbereitung.de
