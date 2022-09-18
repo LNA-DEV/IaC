@@ -19,6 +19,5 @@ variable "ssh_public_key" {
 variable "ssh_private_key" {
   sensitive   = true
   type        = string
-  description = "Ssh Private Key"
+  description = "SSH Private Key"
 }
-

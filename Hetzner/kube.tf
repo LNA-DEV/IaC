@@ -22,10 +22,10 @@ module "kube-hetzner" {
   # ssh_port = 2222
 
   # * Your ssh public key
-  ssh_public_key = file("/home/lnadev/blub.pub")
+  ssh_public_key = var.ssh_public_key
   # * Your private key must be "ssh_private_key = null" when you want to use ssh-agent for a Yubikey-like device authentification or an SSH key-pair with a passphrase.
   # For more details on SSH see https://github.com/kube-hetzner/kube-hetzner/blob/master/docs/ssh.md
-  ssh_private_key = file("/home/lnadev/blub")
+  ssh_private_key = var.ssh_private_key
   # You can add additional SSH public Keys to grant other team members root access to your cluster nodes.
   # ssh_additional_public_keys = []
   
@@ -80,9 +80,9 @@ module "kube-hetzner" {
       count       = 1
     },
     {
-      name        = "control-plane-hel1",
+      name        = "control-plane-nbg2",
       server_type = "cpx11",
-      location    = "hel1",
+      location    = "nbg1",
       labels      = [],
       taints      = [],
       count       = 1
@@ -91,7 +91,7 @@ module "kube-hetzner" {
 
   agent_nodepools = [
     {
-      name        = "agent-small",
+      name        = "agent1",
       server_type = "cpx11",
       location    = "fsn1",
       labels      = [],
@@ -99,29 +99,37 @@ module "kube-hetzner" {
       count       = 1
     },
     {
-      name        = "agent-large",
-      server_type = "cpx21",
+      name        = "agent2",
+      server_type = "cpx11",
       location    = "nbg1",
       labels      = [],
       taints      = [],
       count       = 1
     },
-    {
-      name        = "storage",
-      server_type = "cpx21",
-      location    = "fsn1",
-      # Fully optional, just a demo
-      labels = [
-        "node.kubernetes.io/server-usage=storage"
-      ],
-      taints = [
-        "server-usage=storage:NoSchedule"
-      ],
-      count = 1
-      # In the case of using Longhorn, you can use Hetzner volumes instead of using the node's own storage by specifying a value from 10 to 10000 (in GB)
-      # It will create one volume per node in the nodepool, and configure Longhorn to use them.
-      # longhorn_volume_size = 20
-    }
+    # {
+    #   name        = "agent-large",
+    #   server_type = "cpx21",
+    #   location    = "nbg1",
+    #   labels      = [],
+    #   taints      = [],
+    #   count       = 1
+    # },
+    # {
+    #   name        = "storage",
+    #   server_type = "cpx21",
+    #   location    = "fsn1",
+    #   # Fully optional, just a demo
+    #   labels = [
+    #     "node.kubernetes.io/server-usage=storage"
+    #   ],
+    #   taints = [
+    #     "server-usage=storage:NoSchedule"
+    #   ],
+    #   count = 1
+    #   # In the case of using Longhorn, you can use Hetzner volumes instead of using the node's own storage by specifying a value from 10 to 10000 (in GB)
+    #   # It will create one volume per node in the nodepool, and configure Longhorn to use them.
+    #   # longhorn_volume_size = 20
+    # }
   ]
 
   # * LB location and type, the latter will depend on how much load you want it to handle, see https://www.hetzner.com/cloud/load-balancer
@@ -134,7 +142,7 @@ module "kube-hetzner" {
   # base_domain = mycluster.example.com
 
   # To use local storage on the nodes, you can enable Longhorn, default is "false".
-  # enable_longhorn = true
+  enable_longhorn = true
 
   # The file system type for Longhorn, if enabled (ext4 is the default, otherwise you can choose xfs)
   # longhorn_fstype = "xfs"
