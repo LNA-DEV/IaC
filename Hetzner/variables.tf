@@ -21,3 +21,11 @@ variable "ssh_private_key" {
   type        = string
   description = "SSH Private Key"
 }
+
+
+
+variable "kubeSecrets" {
+  sensitive   = true
+  type        = string
+  description = "Kube secrets"
+}
