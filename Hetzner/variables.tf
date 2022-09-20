@@ -10,8 +10,14 @@ variable "hcloud_dns_token" {
   description = "Hetzner DNS-API-Token"
 }
 
-variable "kubeSecrets" {
+variable "ssh_public_key" {
   sensitive   = true
   type        = string
-  description = "Kubernetes Secrets"
+  description = "SSH Public Key"
+}
+
+variable "ssh_private_key" {
+  sensitive   = true
+  type        = string
+  description = "SSH Private Key"
 }
