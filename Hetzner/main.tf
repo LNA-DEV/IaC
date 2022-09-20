@@ -1,7 +1,6 @@
 terraform {
   cloud {
     organization = "LNA-DEV"
-    token = "c0GJjyUy8XbynA.atlasv1.JWBCIo0t5d6op164cKj9bvSFJ6mpqyOskUG70txsHuVCqKoVwcC66ukHAI8OqdwBc6E"    
     workspaces {
       name = "IaC_Hetzner"
     }
