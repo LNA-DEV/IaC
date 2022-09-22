@@ -51,14 +51,14 @@ resource "hetznerdns_record" "thk" {
   ttl     = 120
 }
 
-# # api.lna-dev.net
-# resource "hetznerdns_record" "api" {
-#   zone_id = data.hetznerdns_zone.dns_zone.id
-#   name    = "api"
-#   value   = module.kubernetes.loadBalancerIp
-#   type    = "A"
-#   ttl     = 120
-# }
+# api.lna-dev.net
+resource "hetznerdns_record" "api" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "api"
+  value   = module.kube-hetzner.load_balancer_public_ipv4
+  type    = "A"
+  ttl     = 120
+}
 
 # Common Extensions
 # ce.lna-dev.net
