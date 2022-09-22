@@ -188,8 +188,8 @@ module "kube-hetzner" {
   # We give you the possibility to use letsencrypt directly with Traefik because it's an easy setup, however it's not optimal,
   # as the free version of Traefik causes a little bit of downtime when when the certificates get renewed. For proper SSL management,
   # we instead recommend you to use cert-manager, that you can easily deploy with helm; see https://cert-manager.io/.
-  # traefik_acme_tls = true
-  # traefik_acme_email = "mail@example.com"
+  traefik_acme_tls = true
+  traefik_acme_email = "lukas@lna-dev.net"
 
   # If you want to configure additional Arguments for traefik, enter them here as a list and in the form of traefik CLI arguments; see https://doc.traefik.io/traefik/reference/static-configuration/cli/
   # They are the options that go into the additionalArguments section of the Traefik helm values file.
@@ -201,7 +201,7 @@ module "kube-hetzner" {
 
   # If you want to allow non-control-plane workloads to run on the control-plane nodes, set "true" below. The default is "false".
   # True by default for single node clusters.
-  # allow_scheduling_on_control_plane = true
+  allow_scheduling_on_control_plane = true
 
   # If you want to disable the automatic upgrade of k3s, you can set this to false. The default is "true".
   # automatically_upgrade_k3s = false
@@ -219,7 +219,6 @@ module "kube-hetzner" {
   # Adding extra firewall rules, like opening a port
   # More info on the format here https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall
   extra_firewall_rules = [
-    # For Postgres
     {
       direction       = "in"
       protocol        = "tcp"
