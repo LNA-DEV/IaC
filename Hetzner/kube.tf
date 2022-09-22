@@ -188,8 +188,8 @@ module "kube-hetzner" {
   # We give you the possibility to use letsencrypt directly with Traefik because it's an easy setup, however it's not optimal,
   # as the free version of Traefik causes a little bit of downtime when when the certificates get renewed. For proper SSL management,
   # we instead recommend you to use cert-manager, that you can easily deploy with helm; see https://cert-manager.io/.
-  # traefik_acme_tls = true
-  # traefik_acme_email = "mail@example.com"
+  traefik_acme_tls = true
+  traefik_acme_email = "lukas@lna-dev.net"
 
   # If you want to configure additional Arguments for traefik, enter them here as a list and in the form of traefik CLI arguments; see https://doc.traefik.io/traefik/reference/static-configuration/cli/
   # They are the options that go into the additionalArguments section of the Traefik helm values file.
@@ -218,24 +218,23 @@ module "kube-hetzner" {
 
   # Adding extra firewall rules, like opening a port
   # More info on the format here https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/firewall
-  # extra_firewall_rules = [
-  #   # For Postgres
-  #   {
-  #     direction       = "in"
-  #     protocol        = "tcp"
-  #     port            = "5432"
-  #     source_ips      = ["0.0.0.0/0", "::/0"]
-  #     destination_ips = [] # Won't be used for this rule 
-  #   },
-  #   # To Allow ArgoCD access to resources via SSH
-  #   {
-  #     direction       = "out"
-  #     protocol        = "tcp"
-  #     port            = "22"
-  #     source_ips      = [] # Won't be used for this rule 
-  #     destination_ips = ["0.0.0.0/0", "::/0"]
-  #   }
-  # ]
+  extra_firewall_rules = [
+    {
+      direction       = "in"
+      protocol        = "tcp"
+      port            = "80"
+      source_ips      = ["0.0.0.0/0", "::/0"]
+      destination_ips = [] # Won't be used for this rule 
+    },
+    # # To Allow ArgoCD access to resources via SSH
+    # {
+    #   direction       = "out"
+    #   protocol        = "tcp"
+    #   port            = "22"
+    #   source_ips      = [] # Won't be used for this rule 
+    #   destination_ips = ["0.0.0.0/0", "::/0"]
+    # }
+  ]
 
   # If you want to configure a different CNI for k3s, use this flag
   # possible values: flannel (Default), calico, and cilium
