@@ -201,7 +201,7 @@ module "kube-hetzner" {
 
   # If you want to allow non-control-plane workloads to run on the control-plane nodes, set "true" below. The default is "false".
   # True by default for single node clusters.
-  allow_scheduling_on_control_plane = true
+  # allow_scheduling_on_control_plane = true
 
   # If you want to disable the automatic upgrade of k3s, you can set this to false. The default is "true".
   # automatically_upgrade_k3s = false
