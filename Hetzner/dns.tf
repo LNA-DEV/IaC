@@ -60,6 +60,16 @@ resource "hetznerdns_record" "api" {
   ttl     = 120
 }
 
+# mongo.lna-dev.net
+resource "hetznerdns_record" "mongo" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "mongo"
+  value   = module.kube-hetzner.load_balancer_public_ipv4
+  type    = "A"
+  ttl     = 120
+}
+
+
 # Common Extensions
 # ce.lna-dev.net
 resource "hetznerdns_record" "ce" {
