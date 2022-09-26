@@ -134,8 +134,8 @@ resource "hetznerdns_record" "googleSearchVerify" {
 resource "hetznerdns_record" "personalWebsiteWWW" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "www"
-  value   = "lna-dev.github.io."
-  type    = "CNAME"
+  value   = module.kube-hetzner.load_balancer_public_ipv4
+  type    = "A"
   ttl     = 120
 }
 
@@ -143,7 +143,7 @@ resource "hetznerdns_record" "personalWebsiteWWW" {
 resource "hetznerdns_record" "personalWebsite" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "@"
-  value   = "185.199.109.153"
+  value   = module.kube-hetzner.load_balancer_public_ipv4
   type    = "A"
   ttl     = 86400
 }
