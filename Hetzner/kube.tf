@@ -255,7 +255,7 @@ module "kube-hetzner" {
   # block_icmp_ping_in = true
 
   # You can enable cert-manager (installed by Helm behind the scenes) with the following flag, the default is "false".
-  # enable_cert_manager = true
+  enable_cert_manager = true
 
   # IP Addresses to use for the DNS Servers, set to an empty list to use the ones provided by Hetzner, defaults to ["1.1.1.1", " 1.0.0.1", "8.8.8.8"].
   # For rancher installs, best to leave it as default.
