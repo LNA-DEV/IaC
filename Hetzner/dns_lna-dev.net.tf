@@ -44,8 +44,8 @@ resource "hetznerdns_record" "ce" {
 resource "hetznerdns_record" "photo" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "photo"
-  value   = "lna-dev.github.io."
-  type    = "CNAME"
+  value   = module.kube-hetzner.load_balancer_public_ipv4
+  type    = "A"
   ttl     = 120
 }
 
