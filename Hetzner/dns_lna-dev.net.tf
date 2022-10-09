@@ -85,3 +85,12 @@ resource "hetznerdns_record" "personalWebsite" {
   type    = "A"
   ttl     = 86400
 }
+
+# Brave Verification
+resource "hetznerdns_record" "personalWebsiteBraveVerification" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
+  value   = "brave-ledger-verification=cb3f4b592a2f3859d2e6a9a9e6fde085cc86551420fcbe7b21e339864962b2e2"
+  type    = "TXT"
+  ttl     = 86400
+}
