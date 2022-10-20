@@ -19,10 +19,10 @@ resource "hetznerdns_record" "pruefungsvorbereitungWWW" {
   ttl     = 86400
 }
 
-# resource "hetznerdns_record" "googleSearchVerifyFiPv" {
-#   zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
-#   name    = "@"
-#   value   = "google-site-verification=1OrQrIpwfPStQ2e_QwO3KBlHvmi2fVXwlyE7Lwm--XA"
-#   type    = "TXT"
-#   ttl     = 120
-# }
+resource "hetznerdns_record" "googleSearchVerifyFiPuev" {
+  zone_id = data.hetznerdns_zone.pruefungsvorbereitung.id
+  name    = "@"
+  value   = "google-site-verification=i4fuD6Vqoo_2wvSbyvmrC8CQ8pO-ytNbzK6m7trmCe8"
+  type    = "TXT"
+  ttl     = 120
+}
