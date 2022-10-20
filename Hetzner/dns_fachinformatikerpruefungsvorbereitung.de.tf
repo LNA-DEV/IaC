@@ -1,9 +1,9 @@
 data "hetznerdns_zone" "pruefungsvorbereitung" {
-  name = "fachinformatiker-pruefungsvorbereitung.de"
+  name = "fachinformatikerpruefungsvorbereitung.de"
 }
 
 resource "hetznerdns_record" "pruefungsvorbereitung" {
-  zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
+  zone_id = data.hetznerdns_zone.pruefungsvorbereitung.id
   name    = "@"
   value   = module.kube-hetzner.load_balancer_public_ipv4
   type    = "A"
@@ -12,7 +12,7 @@ resource "hetznerdns_record" "pruefungsvorbereitung" {
 
 
 resource "hetznerdns_record" "pruefungsvorbereitungWWW" {
-  zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
+  zone_id = data.hetznerdns_zone.pruefungsvorbereitung.id
   name    = "www"
   value   = module.kube-hetzner.load_balancer_public_ipv4
   type    = "A"
