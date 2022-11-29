@@ -25,50 +25,20 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-            - containerPort: 8080 # TODO
+            - containerPort: 8080
           volumeMounts:
-            - name: db-data
-              mountPath: /data/db # TODO
-          env: # TODO
-            - name: MONGO_INITDB_ROOT_USERNAME
-              value: lukas
-            - name: MONGO_INITDB_ROOT_PASSWORD
+            - name: goat-data
+              mountPath: /goatcounter/db 
+          env:
+            - name: GOATCOUNTER_DOMAIN
+              value: goat.lna-dev.net
+            - name: GOATCOUNTER_EMAIL
+              value: lukas.lna-dev.net
+            - name: GOATCOUNTER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: lna-dev-api-secrets
-                  key: goat-password
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: goat-service
-spec:
-  # type: NodePort
-  selector:
-    app: goat
-  ports:
-    - port: 80
-      targetPort: port-http
-      name: http
-    - port: 443
-      targetPort: 443
-      name: https
-
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: goat-data-volume
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/goat-data"
+                  name: goat-secrets
+                  key: GOATCOUNTER_PASSWORD
 
 ---
 apiVersion: v1
@@ -76,13 +46,36 @@ kind: PersistentVolumeClaim
 metadata:
   name: goat-data-claim
 spec:
-  storageClassName: manual
+  storageClassName: goat-data-volume
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
 
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: goat-data-volume
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+  numberOfReplicas: "3"
+  staleReplicaTimeout: "2880" # 48 hours in minutes
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: goat-service
+spec:
+  selector:
+    app: goat
+  ports:
+    - port: 80
+      targetPort: port-http
+      name: http
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -91,6 +84,8 @@ metadata:
   name: goat-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirectscheme@kubernetescrd
 spec:
   tls:
     - hosts:
@@ -107,3 +102,36 @@ spec:
                 name: goat-service
                 port:
                   number: 80
+
+---
+# Needed because of HTTP to HTTPS redirecting
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: goat-ingress-http
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirectscheme@kubernetescrd
+spec:
+  rules:
+    - host: goat.lna-dev.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: goat-service
+                port:
+                  number: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirectscheme
+spec:
+  redirectRegex:
+    regex: '^https?://(?:www\.)?(.+)'
+    replacement: "https://${1}"
+    permanent: true
