@@ -86,6 +86,15 @@ resource "hetznerdns_record" "personalWebsite" {
   ttl     = 86400
 }
 
+# goat.lna-dev.net
+resource "hetznerdns_record" "goat" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "goat"
+  value   = module.kube-hetzner.load_balancer_public_ipv4
+  type    = "A"
+  ttl     = 120
+}
+
 # Brave Verification
 resource "hetznerdns_record" "personalWebsiteBraveVerification" {
   zone_id = data.hetznerdns_zone.dns_zone.id
