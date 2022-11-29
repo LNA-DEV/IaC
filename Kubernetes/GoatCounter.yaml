@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: goat-statefulset
+spec:
+  selector:
+    matchLabels:
+      app: goat
+  serviceName: "goat-service"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: goat
+    spec:
+      volumes:
+        - name: goat-data
+          persistentVolumeClaim:
+            claimName: goat-data-claim
+      containers:
+        - name: goat
+          image: lnadev/goat-counter
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080 # TODO
+          volumeMounts:
+            - name: db-data
+              mountPath: /data/db # TODO
+          env: # TODO
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: lukas
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lna-dev-api-secrets
+                  key: goat-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: goat-service
+spec:
+  # type: NodePort
+  selector:
+    app: goat
+  ports:
+    - port: 80
+      targetPort: port-http
+      name: http
+    - port: 443
+      targetPort: 443
+      name: https
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: goat-data-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/goat-data"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: goat-data-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: goat-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  tls:
+    - hosts:
+        - "goat.lna-dev.net"
+      secretName: goat-cert
+  rules:
+    - host: goat.lna-dev.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: goat-service
+                port:
+                  number: 80
