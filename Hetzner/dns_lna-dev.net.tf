@@ -24,7 +24,7 @@ resource "hetznerdns_record" "mail2" {
 resource "hetznerdns_record" "api" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "api"
-  value   = module.kube-hetzner.load_balancer_public_ipv4
+  value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 120
 }
@@ -44,7 +44,7 @@ resource "hetznerdns_record" "ce" {
 resource "hetznerdns_record" "photo" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "photo"
-  value   = module.kube-hetzner.load_balancer_public_ipv4
+  value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 120
 }
@@ -72,7 +72,7 @@ resource "hetznerdns_record" "googleSearchVerify" {
 resource "hetznerdns_record" "personalWebsiteWWW" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "www"
-  value   = module.kube-hetzner.load_balancer_public_ipv4
+  value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 120
 }
@@ -81,7 +81,7 @@ resource "hetznerdns_record" "personalWebsiteWWW" {
 resource "hetznerdns_record" "personalWebsite" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "@"
-  value   = module.kube-hetzner.load_balancer_public_ipv4
+  value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 86400
 }
@@ -90,7 +90,7 @@ resource "hetznerdns_record" "personalWebsite" {
 resource "hetznerdns_record" "goat" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "goat"
-  value   = module.kube-hetzner.load_balancer_public_ipv4
+  value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 120
 }

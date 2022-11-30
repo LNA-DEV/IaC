@@ -5,7 +5,7 @@ data "hetznerdns_zone" "prüfungsvorbereitung" {
 resource "hetznerdns_record" "prüfungsvorbereitung" {
   zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
   name    = "@"
-  value   = module.kube-hetzner.load_balancer_public_ipv4
+  value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 86400
 }
@@ -14,7 +14,7 @@ resource "hetznerdns_record" "prüfungsvorbereitung" {
 resource "hetznerdns_record" "prüfungsvorbereitungWWW" {
   zone_id = data.hetznerdns_zone.prüfungsvorbereitung.id
   name    = "www"
-  value   = module.kube-hetzner.load_balancer_public_ipv4
+  value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 86400
 }
