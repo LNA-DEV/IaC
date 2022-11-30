@@ -95,6 +95,15 @@ resource "hetznerdns_record" "goat" {
   ttl     = 120
 }
 
+# longhorn.lna-dev.net
+resource "hetznerdns_record" "longhorn" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "longhorn"
+  value   = module.kube-hetzner.ingress_public_ipv4
+  type    = "A"
+  ttl     = 120
+}
+
 # Brave Verification
 resource "hetznerdns_record" "personalWebsiteBraveVerification" {
   zone_id = data.hetznerdns_zone.dns_zone.id
