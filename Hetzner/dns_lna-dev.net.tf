@@ -39,16 +39,6 @@ resource "hetznerdns_record" "ce" {
   ttl     = 120
 }
 
-# LNA-Photo
-# photo.lna-dev.net
-resource "hetznerdns_record" "photo" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "photo"
-  value   = module.kube-hetzner.ingress_public_ipv4
-  type    = "A"
-  ttl     = 120
-}
-
 # Fachinformatiker Prüfungsvorbereitung
 # fi.lna-dev.net
 resource "hetznerdns_record" "fi" {
