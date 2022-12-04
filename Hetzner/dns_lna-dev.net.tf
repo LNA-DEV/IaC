@@ -20,15 +20,6 @@ resource "hetznerdns_record" "mail2" {
   ttl     = 120
 }
 
-# api.lna-dev.net
-resource "hetznerdns_record" "api" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "api"
-  value   = module.kube-hetzner.ingress_public_ipv4
-  type    = "A"
-  ttl     = 120
-}
-
 # Common Extensions
 # ce.lna-dev.net
 resource "hetznerdns_record" "ce" {
@@ -44,8 +35,8 @@ resource "hetznerdns_record" "ce" {
 resource "hetznerdns_record" "fi" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "fi"
-  value   = "lna-dev.github.io."
-  type    = "CNAME"
+  value   = module.kube-hetzner.ingress_public_ipv4
+  type    = "A"
   ttl     = 120
 }
 
