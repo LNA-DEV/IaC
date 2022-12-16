@@ -33,3 +33,5 @@ override.tf.json
 
 # Exclude sensitve variable files
 terraform.tfvars
+
+.idea
