@@ -226,14 +226,13 @@ module "kube-hetzner" {
       source_ips      = ["0.0.0.0/0", "::/0"]
       destination_ips = [] # Won't be used for this rule 
     },
-    # # To Allow ArgoCD access to resources via SSH
-    # {
-    #   direction       = "out"
-    #   protocol        = "tcp"
-    #   port            = "22"
-    #   source_ips      = [] # Won't be used for this rule 
-    #   destination_ips = ["0.0.0.0/0", "::/0"]
-    # }
+     {
+       direction       = "out"
+       protocol        = "tcp"
+       port            = "27017"
+       source_ips      = [] # Won't be used for this rule
+       destination_ips = ["0.0.0.0/0", "::/0"]
+     }
   ]
 
   # If you want to configure a different CNI for k3s, use this flag
