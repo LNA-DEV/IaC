@@ -85,15 +85,6 @@ resource "hetznerdns_record" "longhorn" {
   ttl     = 120
 }
 
-# ap.lna-dev.net
-resource "hetznerdns_record" "ap" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "ap"
-  value   = module.kube-hetzner.ingress_public_ipv4
-  type    = "A"
-  ttl     = 120
-}
-
 # Brave Verification
 resource "hetznerdns_record" "personalWebsiteBraveVerification" {
   zone_id = data.hetznerdns_zone.dns_zone.id
