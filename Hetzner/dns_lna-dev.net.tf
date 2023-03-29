@@ -30,16 +30,6 @@ resource "hetznerdns_record" "ce" {
   ttl     = 120
 }
 
-# Fachinformatiker Prüfungsvorbereitung
-# fi.lna-dev.net
-resource "hetznerdns_record" "fi" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "fi"
-  value   = module.kube-hetzner.ingress_public_ipv4
-  type    = "A"
-  ttl     = 120
-}
-
 # Google Search Verfication
 resource "hetznerdns_record" "googleSearchVerify" {
   zone_id = data.hetznerdns_zone.dns_zone.id
@@ -50,39 +40,12 @@ resource "hetznerdns_record" "googleSearchVerify" {
 }
 
 # lna-dev.net
-resource "hetznerdns_record" "personalWebsiteWWW" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "www"
-  value   = module.kube-hetzner.ingress_public_ipv4
-  type    = "A"
-  ttl     = 120
-}
-
-# lna-dev.net
 resource "hetznerdns_record" "personalWebsite" {
   zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "@"
+  name    = "*"
   value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 86400
-}
-
-# goat.lna-dev.net
-resource "hetznerdns_record" "goat" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "goat"
-  value   = module.kube-hetzner.ingress_public_ipv4
-  type    = "A"
-  ttl     = 120
-}
-
-# longhorn.lna-dev.net
-resource "hetznerdns_record" "longhorn" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "longhorn"
-  value   = module.kube-hetzner.ingress_public_ipv4
-  type    = "A"
-  ttl     = 120
 }
 
 # Brave Verification
