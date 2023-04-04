@@ -40,9 +40,17 @@ resource "hetznerdns_record" "googleSearchVerify" {
 }
 
 # lna-dev.net
-resource "hetznerdns_record" "personalWebsite" {
+resource "hetznerdns_record" "lnadev" {
   zone_id = data.hetznerdns_zone.dns_zone.id
   name    = "*"
+  value   = module.kube-hetzner.ingress_public_ipv4
+  type    = "A"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "personalWebsite" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
   value   = module.kube-hetzner.ingress_public_ipv4
   type    = "A"
   ttl     = 86400
