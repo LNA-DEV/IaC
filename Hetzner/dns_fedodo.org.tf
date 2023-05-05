@@ -10,3 +10,19 @@ resource "hetznerdns_record" "fedodoGitHubVerify" {
   type    = "TXT"
   ttl     = 86400
 }
+
+resource "hetznerdns_record" "fedodo_home" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "*"
+  value   = module.kube-hetzner.ingress_public_ipv4
+  type    = "A"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "fedodo_home_root" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "@"
+  value   = module.kube-hetzner.ingress_public_ipv4
+  type    = "A"
+  ttl     = 86400
+}
