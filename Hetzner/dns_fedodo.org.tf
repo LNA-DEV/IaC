@@ -26,3 +26,11 @@ resource "hetznerdns_record" "fedodo_home_root" {
   type    = "A"
   ttl     = 86400
 }
+
+resource "hetznerdns_record" "googleSearchVerifyFedodoOrg" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "@"
+  value   = "google-site-verification=mIDwtSoK1jhW75C4YkotoXSR5IpFxMr1E0JZpp_VBts"
+  type    = "TXT"
+  ttl     = 86400
+}
