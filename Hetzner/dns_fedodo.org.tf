@@ -11,6 +11,15 @@ resource "hetznerdns_record" "fedodoGitHubVerify" {
   ttl     = 86400
 }
 
+# Tutanota Verification
+resource "hetznerdns_record" "fedodoTutanotaVerify" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "@"
+  value   = "t-verify=69d2354bdb7fa69d0d17fdc9e8d64e20"
+  type    = "TXT"
+  ttl     = 86400
+}
+
 resource "hetznerdns_record" "fedodo_home" {
   zone_id = data.hetznerdns_zone.fedodo_org.id
   name    = "*"
