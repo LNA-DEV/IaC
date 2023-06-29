@@ -11,12 +11,67 @@ resource "hetznerdns_record" "fedodoGitHubVerify" {
   ttl     = 86400
 }
 
-# Tutanota Verification
 resource "hetznerdns_record" "fedodoTutanotaVerify" {
   zone_id = data.hetznerdns_zone.fedodo_org.id
   name    = "@"
   value   = "t-verify=69d2354bdb7fa69d0d17fdc9e8d64e20"
   type    = "TXT"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "fedodoTutanotaSpf" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "@"
+  value   = "v=spf1 include:spf.tutanota.de -all"
+  type    = "TXT"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "fedodoTutanotaMail" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "@"
+  value   = "mail.tutanota.de."
+  type    = "MX"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "fedodoTutanotaDomainKey" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "s1._domainkey"
+  value   = "s1.domainkey.tutanota.de."
+  type    = "CNAME"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "fedodoTutanotaDomainKey2" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "s2._domainkey"
+  value   = "s2.domainkey.tutanota.de."
+  type    = "CNAME"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "fedodoTutanotaMta" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "_mta-sts"
+  value   = "mta-sts.tutanota.de."
+  type    = "CNAME"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "fedodoTutanotaMta2" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "mta-sts"
+  value   = "mta-sts.tutanota.de."
+  type    = "CNAME"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "fedodoTutanotaDmarc" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "_dmarc"
+  value   = "v=DMARC1; p=quarantine; adkim=s"
+  type    = "CNAME"
   ttl     = 86400
 }
 
