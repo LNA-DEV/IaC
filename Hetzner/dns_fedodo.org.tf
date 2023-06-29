@@ -19,7 +19,7 @@ resource "hetznerdns_record" "fedodoTutanotaVerify" {
   ttl     = 86400
 }
 
-resource "hetznerdns_record" "fedodoTutanotaSpf" {
+resource "hetznerdns_record" "fedodo_tutanoto_spf" {
   zone_id = data.hetznerdns_zone.fedodo_org.id
   name    = "@"
   value   = "v=spf1 include:spf.tutanota.de -all"
