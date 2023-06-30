@@ -3,23 +3,6 @@ data "hetznerdns_zone" "dns_zone" {
   name = "lna-dev.net"
 }
 
-# Mail
-resource "hetznerdns_record" "mail1" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "@"
-  value   = "10 mx00.ionos.de."
-  type    = "MX"
-  ttl     = 120
-}
-
-resource "hetznerdns_record" "mail2" {
-  zone_id = data.hetznerdns_zone.dns_zone.id
-  name    = "@"
-  value   = "20 mx01.ionos.de."
-  type    = "MX"
-  ttl     = 120
-}
-
 # Common Extensions
 # ce.lna-dev.net
 resource "hetznerdns_record" "ce" {
