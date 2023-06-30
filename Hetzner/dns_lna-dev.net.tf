@@ -64,3 +64,13 @@ resource "hetznerdns_record" "personalWebsiteBraveVerification" {
   type    = "TXT"
   ttl     = 86400
 }
+
+# Tutnaota
+
+resource "hetznerdns_record" "lnaDevNetTutanotaVerify" {
+  zone_id = data.hetznerdns_zone.fedodo_org.id
+  name    = "@"
+  value   = "t-verify=78e08942b3e1ea847ee37d661afefbf9"
+  type    = "TXT"
+  ttl     = 86400
+}
