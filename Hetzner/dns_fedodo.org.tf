@@ -30,7 +30,7 @@ resource "hetznerdns_record" "fedodo_tutanoto_spf" {
 resource "hetznerdns_record" "fedodoTutanotaMail" {
   zone_id = data.hetznerdns_zone.fedodo_org.id
   name    = "@"
-  value   = "mail.tutanota.de."
+  value   = "0 mail.tutanota.de."
   type    = "MX"
   ttl     = 86400
 }
@@ -70,8 +70,8 @@ resource "hetznerdns_record" "fedodoTutanotaMta2" {
 resource "hetznerdns_record" "fedodoTutanotaDmarc" {
   zone_id = data.hetznerdns_zone.fedodo_org.id
   name    = "_dmarc"
-  value   = "v=DMARC1; p=quarantine; adkim=s"
-  type    = "CNAME"
+  value   = "\"v=DMARC1; p=quarantine; adkim=s\""
+  type    = "TXT"
   ttl     = 86400
 }
 
