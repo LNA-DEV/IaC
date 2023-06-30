@@ -66,8 +66,7 @@ resource "hetznerdns_record" "personalWebsiteBraveVerification" {
 }
 
 # Tutnaota
-
-resource "hetznerdns_record" "lnaDevNetTutanotaVerify" {
+resource "hetznerdns_record" "lna_dev_netTutanotaVerify" {
   zone_id = data.hetznerdns_zone.fedodo_org.id
   name    = "@"
   value   = "t-verify=78e08942b3e1ea847ee37d661afefbf9"
