@@ -73,3 +73,59 @@ resource "hetznerdns_record" "lna_dev_netTutanotaVerify" {
   type    = "TXT"
   ttl     = 86400
 }
+
+resource "hetznerdns_record" "lna_dev_tutanoto_spf" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
+  value   = "\"v=spf1 include:spf.tutanota.de -all\""
+  type    = "TXT"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "lna_devTutanotaMail" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "@"
+  value   = "15 mail.tutanota.de."
+  type    = "MX"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "lna_devTutanotaDomainKey" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "s1._domainkey"
+  value   = "s1.domainkey.tutanota.de."
+  type    = "CNAME"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "lna_devTutanotaDomainKey2" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "s2._domainkey"
+  value   = "s2.domainkey.tutanota.de."
+  type    = "CNAME"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "lna_devTutanotaMta" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "_mta-sts"
+  value   = "mta-sts.tutanota.de."
+  type    = "CNAME"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "lna_devTutanotaMta2" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "mta-sts"
+  value   = "mta-sts.tutanota.de."
+  type    = "CNAME"
+  ttl     = 86400
+}
+
+resource "hetznerdns_record" "lna_devTutanotaDmarc" {
+  zone_id = data.hetznerdns_zone.dns_zone.id
+  name    = "_dmarc"
+  value   = "\"v=DMARC1; p=quarantine; adkim=s\""
+  type    = "TXT"
+  ttl     = 86400
+}
