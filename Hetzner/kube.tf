@@ -185,12 +185,6 @@ module "kube-hetzner" {
   # It can work with any ingress controller that you choose to deploy.
   # enable_klipper_metal_lb = "true"
 
-  # We give you the possibility to use letsencrypt directly with Traefik because it's an easy setup, however it's not optimal,
-  # as the free version of Traefik causes a little bit of downtime when when the certificates get renewed. For proper SSL management,
-  # we instead recommend you to use cert-manager, that you can easily deploy with helm; see https://cert-manager.io/.
-  traefik_acme_tls = true
-  traefik_acme_email = "lukas@lna-dev.net"
-
   # If you want to configure additional Arguments for traefik, enter them here as a list and in the form of traefik CLI arguments; see https://doc.traefik.io/traefik/reference/static-configuration/cli/
   # They are the options that go into the additionalArguments section of the Traefik helm values file.
   # Example: traefik_additional_options = ["--log.level=DEBUG", "--tracing=true"]
