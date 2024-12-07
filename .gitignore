@@ -1,5 +1,5 @@
-k3s_kubeconfig.yaml
-k3s_kustomization_backup.yaml
+**kubeconfig.yaml
+**kustomization_backup.yaml
 
 # Local .terraform directories
 **/.terraform/*
